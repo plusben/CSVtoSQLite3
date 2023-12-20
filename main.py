@@ -5,12 +5,12 @@ import os
 def infer_data_type(value):
     """Infer the most appropriate data type for a given value."""
     if value.isdigit():
-        return 'INTEGER'
+        return 'INTEGER'  # Wenn der Wert eine Ganzzahl ist, ist der Datentyp INTEGER.
     try:
         float(value)
-        return 'REAL'
+        return 'REAL'  # Wenn der Wert eine Fließkommazahl ist, ist der Datentyp REAL.
     except ValueError:
-        return 'TEXT'
+        return 'TEXT'  # Andernfalls wird der Datentyp TEXT angenommen.
 
 def create_sqlite_from_csv(csv_file_path, sqlite_db_path):
     # Überprüfen, ob die Datenbankdatei bereits existiert
@@ -24,11 +24,11 @@ def create_sqlite_from_csv(csv_file_path, sqlite_db_path):
     if not db_exists:
         with open(csv_file_path, 'r') as csvfile:
             reader = csv.reader(csvfile)
-            headers = next(reader)
+            headers = next(reader)  # Die erste Zeile enthält die Spaltennamen
 
             # Datentypen für jede Spalte bestimmen
             sample_size = 5  # Anzahl der Zeilen zur Bestimmung des Datentyps
-            data_types = ['TEXT'] * len(headers)
+            data_types = ['TEXT'] * len(headers)  # Standardmäßig wird jeder Datentyp auf TEXT gesetzt
             for i, row in enumerate(reader):
                 if i >= sample_size:
                     break
@@ -57,6 +57,6 @@ def create_sqlite_from_csv(csv_file_path, sqlite_db_path):
     conn.close()
 
 # Beispielaufruf
-csv_file_path = 'titanic.csv'  # Replace with your CSV file path
-sqlite_db_path = 'titanic.db'  # Replace with your desired SQLite DB path
+csv_file_path = 'titanic.csv'  # Pfad zur CSV-Datei, ersetze durch deinen Dateipfad
+sqlite_db_path = 'titanic.db'  # Pfad zur SQLite-Datenbank, ersetze durch deinen Dateipfad
 create_sqlite_from_csv(csv_file_path, sqlite_db_path)
