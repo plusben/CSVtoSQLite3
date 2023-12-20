@@ -57,6 +57,6 @@ def create_sqlite_from_csv(csv_file_path, sqlite_db_path):
     conn.close()
 
 # Beispielaufruf
-csv_file_path = 'data/titanic.csv'  # Replace with your CSV file path
-sqlite_db_path = 'data/titanic.db'  # Replace with your desired SQLite DB path
+csv_file_path = 'titanic.csv'  # Replace with your CSV file path
+sqlite_db_path = 'titanic.db'  # Replace with your desired SQLite DB path
 create_sqlite_from_csv(csv_file_path, sqlite_db_path)
